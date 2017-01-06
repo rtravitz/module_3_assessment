@@ -1,3 +1,4 @@
+require "rspec/rails"
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'vcr'
