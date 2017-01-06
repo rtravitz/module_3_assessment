@@ -5,7 +5,7 @@ class BestbuyService
   end
 
   def stores_by_distance(zip)
-    response = Faraday.get("#{@base_url}/stores(area(#{zip},25))?format=json&show=phone,city,distance,storeType,name&apiKey=#{@api_key}")
+    response = Faraday.get("#{@base_url}/stores(area(#{zip},25))?format=json&show=phone,storeId,city,distance,storeType,name&apiKey=#{@api_key}")
     JSON.parse(response.body, symbolize_names: true)
   end
 end
