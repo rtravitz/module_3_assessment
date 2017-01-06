@@ -2,4 +2,7 @@
 <p><%= @store[:city] %></p>
 <p><%= @store[:storeType] %></p>
 <p><%= @store[:phone] %></p>
+<% @hours.each do |day| %>
+  <p><%= day %></p>
+<% end %>
 
