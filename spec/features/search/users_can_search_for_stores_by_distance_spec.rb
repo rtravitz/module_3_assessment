@@ -4,7 +4,9 @@ describe "As a user when I use the search box" do
   it "I can see stores within a specified distance" do
     VCR.use_cassette("store_distance") do
       visit "/"
-      fill_in "search_box", with: "80202"
+      fill_in "zipcode", with: "80202"
+      click_on "Search"
+
       expect(current_path).to eq("/search")
       expect(page).to have_content("Stores")
       expect(page).to have_content("16 Total Stores")
