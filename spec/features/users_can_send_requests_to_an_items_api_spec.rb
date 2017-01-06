@@ -34,7 +34,7 @@ describe "As a user when I send a", :type => :request do
       item1 = Item.create(name: "item1", description: "desc1", image_url: "test.jpg")
       delete "/api/v1/items/#{item1.id}"
 
-      expect(response.status).to be_success
+      expect(response).to be_success
       expect(Item.all.count).to eq(0)
     end
   end
@@ -42,8 +42,15 @@ describe "As a user when I send a", :type => :request do
   context "POST request to /api/v1/items" do
     it "I receive a JSON response containing the item" do
       params = {item: {name: "item1", description: "desc1", image_url: "test.jpg"}}
-      post "/api/v1/items", params.to_json
-      
+      post "/api/v1/items", params.to_json, {"ACCEPT" => "application/json", "CONTENT_TYPE" => "application/json"}
+
+      expect(response).to be_success
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json[:name]).to eq("item1")
+      expect(json[:description]).to eq("desc1")
+      expect(json[:image_url]).to eq("test.jpg")
+      expect(json[:created_at]).to eq(nil)
+      expect(json[:updated_at]).to eq(nil)
     end
   end
 end

@@ -12,4 +12,14 @@ class Api::V1::ItemsController < ApplicationController
     render json: item.destroy
   end
 
+  def create
+    item = Item.create(item_params)
+    render json: item
+  end
+
+  private
+
+    def item_params
+      params.require(:item).permit(:name, :description, :image_url)
+    end
 end
