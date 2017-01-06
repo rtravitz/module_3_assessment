@@ -12,6 +12,25 @@ describe "Store" do
       expect(store.phone).to eq("303-270-9189")
     end
   end
+
+  context "methods" do
+    it "generate stores returns an array of stores" do
+      VCR.use_cassette("generate_stores") do
+        result = Store.generate_stores("80202")
+
+        expect(result).to be_instance_of(Array)
+        expect(result.first).to be_instance_of(Store)
+        expect(result.first.type).to eq("Mobile")
+      end
+    end
+
+    it "total_stores returns the count of total stores for a zip" do
+      VCR.use_cassette("total_stores") do
+        result = Store.total_stores("80202")
+        expect(result).to eq(16)
+      end
+    end
+  end
 end
 
 def mock_store
@@ -23,3 +42,4 @@ def mock_store
     name: "Cherry Creek Shopping Center"
   }
 end
+

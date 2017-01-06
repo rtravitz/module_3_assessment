@@ -8,4 +8,17 @@ class Store
     @type     = attributes[:storeType]
     @phone    = attributes[:phone]
   end
+
+  def self.generate_stores(zip)
+    response = BestbuyService.new.stores_by_distance(zip)
+    response[:stores].map do |store|
+      Store.new(store)
+    end
+  end
+
+  def self.total_stores(zip)
+    response = BestbuyService.new.stores_by_distance(zip)
+    response[:total]
+  end
+
 end
