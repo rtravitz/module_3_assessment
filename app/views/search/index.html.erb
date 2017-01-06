@@ -1,0 +1,13 @@
+<h1>Stores</h1>
+<div class="container">
+  <% @stores[:stores].each do |store| %>
+    <h4><%= @stores[:total] %> Total Stores</h4>
+    <div class="well col-md-3">
+      <p>Name: <%= store[:name] %></p>
+      <p>Type: <%= store[:storeType] %></p>
+      <p>Phone: <%= store[:phone] %></p>
+      <p>City: <%= store[:city] %></p>
+      <p>Distance: <%= store[:distance] %></p>
+    </div>
+  <% end %>
+</div>

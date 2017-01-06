@@ -13,7 +13,6 @@ describe "As a user when I use the search box" do
       expect(page).to have_content("Centennial")
       expect(page).to have_content("BigBox")
       expect(page).to have_content("303-797-3246")
-      expect(page).to have_content("15")
     end
   end
 end
